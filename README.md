@@ -5,7 +5,7 @@ Rockbuster Stealth LLC is a fictitious movie rental company that used to have st
 ## Data
 The [data set](http://www.postgresqltutorial.com/wp-content/uploads/2019/05/dvdrental.zip) contains 15 tables with data about film titles & info, rentals, revenue, customers. It was provided by CareerFoundry.
 ## Results
-Management was provided with insight about:
+Management was provided with insights about:
 - Top markets
 - Top genres
 - Top customer profiles
