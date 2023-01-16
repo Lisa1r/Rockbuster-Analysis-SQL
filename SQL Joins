@@ -1,5 +1,6 @@
 ## SQL Joins
 
+
 ## Find the top 10 countries for Rockbuster in terms of customer numbers
 
 SELECT D.country,
