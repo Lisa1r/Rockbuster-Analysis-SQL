@@ -1,5 +1,6 @@
 ## SQL Subqueries
 
+
 ## Find the average amount paid by the top 5 customers, followed by an alternative using a nested query instead
 
 SELECT ROUND(AVG(total_amount_paid), 2) AS average FROM (SELECT B.customer_id,
