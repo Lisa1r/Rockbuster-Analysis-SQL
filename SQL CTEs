@@ -19,7 +19,7 @@ WHERE D.city IN ('Aurora', 'Atlixco', 'Xintai', 'Adoni', 'Dhule (Dhulia)',
 LIMIT 5)
 SELECT ROUND(AVG(total_amount_paid), 2) AS avg_amount_paid FROM CTE_avg_tot_am_paid;
 
-## Find out how many of the top 5 customers are based within each country
+## Find out how many of the top 5 customers are based within each country, followed by an alternative using a nested query
 
 WITH CTE_top_cust_cnt(amount, customer_id, first_name, last_name, city, country, total_amount_paid) AS
 (SELECT A.amount, B.customer_id, B.first_name, B.last_name, D.city, E.country, SUM(amount) AS total_amount_paid
@@ -44,3 +44,19 @@ INNER JOIN country D USING(country_id)
 LEFT JOIN CTE_top_cust_cnt ON D.country = CTE_top_cust_cnt.country GROUP BY D.country
 ORDER BY top_customer_count DESC
 LIMIT 5;
+
+WITH cte_top_10_countries (country_id) AS (SELECT D.country_id
+FROM customer A
+INNER JOIN address B USING(address_id)
+INNER JOIN city C USING(city_id)
+INNER JOIN country D USING(country_id)
+GROUP BY D.country_id
+ORDER BY COUNT(A.customer_id) DESC LIMIT 10)
+SELECT C.city, D.country,
+COUNT(A.customer_id) AS customer_count FROM customer A
+INNER JOIN address B USING(address_id)
+INNER JOIN city C USING(city_id)
+INNER JOIN country D USING(country_id)
+INNER JOIN cte_top_10_countries E USING(country_id)
+GROUP BY C.city, D.country
+ORDER BY COUNT(A.customer_id) DESC LIMIT 10;
