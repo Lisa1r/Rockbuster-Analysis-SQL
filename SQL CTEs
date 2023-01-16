@@ -1,5 +1,6 @@
 ## SQL CTEs
 
+
 ## Find the average amount paid by the top 5 customers
 
 WITH CTE_avg_tot_am_paid(customer_id, first_name, last_name, city, country, total_amount_paid) AS
@@ -18,6 +19,7 @@ WHERE D.city IN ('Aurora', 'Atlixco', 'Xintai', 'Adoni', 'Dhule (Dhulia)',
 'Kurashiki', 'Pingxiang', 'Sivas', 'Celaya', 'So Leopoldo') GROUP BY A.customer_id, A.first_name, A.last_name, D.city, E.country ORDER BY total_amount_paid DESC
 LIMIT 5)
 SELECT ROUND(AVG(total_amount_paid), 2) AS avg_amount_paid FROM CTE_avg_tot_am_paid;
+
 
 ## Find out how many of the top 5 customers are based within each country, followed by an alternative using a nested query
 
